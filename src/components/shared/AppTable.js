@@ -13,7 +13,8 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: '40px',
+    maxWidth: '60px',
   },
   firstPlace: { backgroundColor: '#F6EE07' },
   secondPlace: { backgroundColor: '#D4D3CA' },
