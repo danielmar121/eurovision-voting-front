@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/eurovision-voting-front/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/eurovision-voting-front/static/js/main.24897eca.chunk.js",
-    "main.js.map": "/eurovision-voting-front/static/js/main.24897eca.chunk.js.map",
+    "main.js": "/eurovision-voting-front/static/js/main.5de565d8.chunk.js",
+    "main.js.map": "/eurovision-voting-front/static/js/main.5de565d8.chunk.js.map",
     "runtime-main.js": "/eurovision-voting-front/static/js/runtime-main.97fa314c.js",
     "runtime-main.js.map": "/eurovision-voting-front/static/js/runtime-main.97fa314c.js.map",
     "static/js/2.db812b4c.chunk.js": "/eurovision-voting-front/static/js/2.db812b4c.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.97fa314c.js",
     "static/js/2.db812b4c.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.24897eca.chunk.js"
+    "static/js/main.5de565d8.chunk.js"
   ]
 }
