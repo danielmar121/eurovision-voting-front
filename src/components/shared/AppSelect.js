@@ -21,7 +21,7 @@ const AppSelect = ({ score, setScore }) => {
         <MenuItem value={'7'}>7</MenuItem>
         <MenuItem value={'8'}>8</MenuItem>
         <MenuItem value={'10'}>10</MenuItem>
-        <MenuItem value={'12'}>DOUZE PUA</MenuItem>
+        <MenuItem value={'12'}>DOUZE POINTS</MenuItem>
       </Select>
     </FormControl>
   );
