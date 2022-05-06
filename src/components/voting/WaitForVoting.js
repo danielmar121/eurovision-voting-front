@@ -37,7 +37,9 @@ const WaitForVoting = () => {
         alignItems="center"
       >
         <AppTable rows={rows} columns={columns} />
-        <h1>Please wait for the next voting session</h1>
+        <center>
+          <h1>Please wait for the next voting session</h1>
+        </center>
         <CircularProgress size="10rem" />
       </Box>
     </Container>
