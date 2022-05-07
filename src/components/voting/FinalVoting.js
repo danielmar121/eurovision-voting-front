@@ -87,7 +87,7 @@ const FinalVoting = ({ popUpNotification }) => {
       getSongsFromServer();
       setInit(false);
     }
-  }, [init]);
+  }, [init, getSongsFromServer]);
 
   return (
     <Container>
