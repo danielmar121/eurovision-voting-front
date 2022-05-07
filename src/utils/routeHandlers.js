@@ -1,7 +1,4 @@
-const urlBlockchain = 'http://localhost:8080/blockchain';
-const songsUrl =
-  'https://80f9-77-124-6-115.eu.ngrok.io/api/v1/eurovision/songs';
-// const songsUrl = 'https://httpbin.org/anything';
+const songsUrl = 'https://36ca-77-124-6-115.eu.ngrok.io';
 
 async function httpRequestBuilder({
   url,
@@ -20,24 +17,19 @@ async function httpRequestBuilder({
   return res;
 }
 
-export async function hash({ data }) {
-  const response = await httpRequestBuilder({
-    url: `${urlBlockchain}/hash`,
+export async function sendScores({ scores }) {
+  await httpRequestBuilder({
+    url: `${songsUrl}/api/v1/eurovision/daniel`,
     method: 'POST',
-    body: {
-      data,
-    },
+    body: scores,
   });
-
-  return response.json();
 }
 
 export async function getSongs() {
   const response = await httpRequestBuilder({
-    url: songsUrl,
+    url: `${songsUrl}/api/v1/eurovision/songs`,
     method: 'GET',
   });
-  console.log(response);
 
   return response.json();
 }

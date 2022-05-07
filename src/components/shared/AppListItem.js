@@ -10,7 +10,7 @@ import {
 import AppSelect from './AppSelect';
 import PropTypes from 'prop-types';
 
-export default function AppListItem({ item }) {
+export default function AppListItem({ item, addFinalScore }) {
   return (
     <ListItem alignItems="flex-start">
       <ListItemAvatar>
@@ -31,12 +31,13 @@ export default function AppListItem({ item }) {
         }
       />
       <Box>
-        <AppSelect availableScore={[1, 2, 3]} />
+        <AppSelect selectKey={item.key} addFinalScore={addFinalScore} />
       </Box>
     </ListItem>
   );
 }
 
 AppListItem.propTypes = {
+  addFinalScore: PropTypes.func,
   item: PropTypes.object,
 };

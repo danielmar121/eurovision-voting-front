@@ -1,7 +1,15 @@
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const AppSelect = ({ score, setScore }) => {
+const AppSelect = ({ selectKey, addFinalScore }) => {
+  const [score, setScore] = useState('');
+
+  const addScoreToFinalScores = ({ value }) => {
+    setScore(value);
+    addFinalScore({ key: selectKey, score: value });
+  };
+
   return (
     <FormControl fullWidth style={{ minWidth: '100px' }}>
       <InputLabel id="demo-simple-select-label">Score</InputLabel>
@@ -10,14 +18,11 @@ const AppSelect = ({ score, setScore }) => {
         id="demo-simple-select"
         value={score}
         label="Score"
-        onChange={(event) => setScore(event.target.value)}
+        onChange={(event) =>
+          addScoreToFinalScores({ value: event.target.value })
+        }
       >
-        {/* {availableScores.map((availableScore, index) => (
-          <MenuItem key={index} value={index}>
-            {availableScore}
-          </MenuItem>
-        ))} */}
-
+        <MenuItem value={'0'}>0</MenuItem>
         <MenuItem value={'1'}>1</MenuItem>
         <MenuItem value={'2'}>2</MenuItem>
         <MenuItem value={'3'}>3</MenuItem>
@@ -34,9 +39,8 @@ const AppSelect = ({ score, setScore }) => {
 };
 
 AppSelect.propTypes = {
-  setScore: PropTypes.func,
-  score: PropTypes.string,
-  // availableScores: PropTypes.array,
+  addFinalScore: PropTypes.func,
+  selectKey: PropTypes.string,
 };
 
 export default AppSelect;

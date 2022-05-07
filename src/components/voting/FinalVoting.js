@@ -1,25 +1,18 @@
-import { Container, CircularProgress } from '@material-ui/core';
-// import { useEffect } from 'react';
+import { Container, CircularProgress, Box } from '@material-ui/core';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import AppList from '../shared/AppList';
+import AppButton from '../shared/AppButton';
 
-import { getSongs } from '../../utils/routeHandlers';
-
-const songss = [
-  {
-    key: 'ISRAEL',
-    country: 'Israel',
-    song: 'I.M',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Flag_of_Israel.svg/2560px-Flag_of_Israel.svg.png',
-  },
-];
+import { getSongs, sendScores } from '../../utils/routeHandlers';
 
 const FinalVoting = ({ popUpNotification }) => {
   const [loading, setLoading] = useState(true);
   const [songs, setSongs] = useState([]);
-  // const [init, setInit] = useState(true);
+  const [scores, setScores] = useState({});
+  const [init, setInit] = useState(true);
 
   async function getSongsFromServer() {
     try {
@@ -28,21 +21,85 @@ const FinalVoting = ({ popUpNotification }) => {
         message: 'Successfully got songs',
         severity: 'success',
       });
-      console.log(res);
+      setSongs(res);
     } catch (error) {
       popUpNotification({ message: error.message, severity: 'error' });
     } finally {
       setLoading(false);
-      setSongs(songss);
     }
   }
 
-  getSongsFromServer();
+  function validateScore() {
+    const scoresCount = Object.values(scores).reduce(
+      (acc, score) => {
+        if (score !== '0') acc[score] = acc[score] + 1;
+        return acc;
+      },
+      {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        10: 0,
+        12: 0,
+      }
+    );
+
+    return Object.values(scoresCount).every((scoreCount) => scoreCount === 1);
+  }
+
+  async function handleSubmitScores() {
+    setLoading(true);
+    try {
+      const isValid = validateScore();
+      if (isValid) {
+        await sendScores({ scores });
+        popUpNotification({
+          message: 'Successfully send scores',
+          severity: 'success',
+        });
+      } else {
+        popUpNotification({
+          message: 'Please make sure the scores are valid',
+          severity: 'error',
+        });
+      }
+    } catch (error) {
+      popUpNotification({ message: error.message, severity: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function addFinalScore({ key, score }) {
+    const tempScores = scores;
+    tempScores[key] = score;
+    setScores(tempScores);
+    console.log(scores);
+  }
+
+  useEffect(() => {
+    if (init) {
+      getSongsFromServer();
+      setInit(false);
+    }
+  }, [init]);
 
   return (
     <Container>
-      {songs && <AppList items={songs} />}
-      {loading && <CircularProgress />}
+      <Box>
+        {songs && <AppList items={songs} addFinalScore={addFinalScore} />}
+        {loading && <CircularProgress />}
+        <AppButton
+          key="submitScores"
+          handleSubmit={handleSubmitScores}
+          buttonName="Submit Scores"
+        ></AppButton>
+      </Box>
     </Container>
   );
 };
