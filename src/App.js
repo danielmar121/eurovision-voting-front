@@ -6,10 +6,11 @@ import { useState } from 'react';
 import Drawer from './components/shared/Drawer';
 import AppSnackbar from './components/shared/AppSnackbar';
 import VotingPage from './components/voting/VotingPage';
+import FinalVoting from './components/voting/FinalVoting';
 
 const routes = ['Voting'];
 const routesIcons = [<HowToVote key="vote-icon" />];
-const votingPagesNames = ['vote'];
+const votingPagesNames = ['vote', 'final'];
 
 export default function App() {
   const [notify, setNotify] = useState(false);
@@ -27,6 +28,7 @@ export default function App() {
 
   const routePages = {
     vote: <VotingPage popUpNotification={popUpNotification} />,
+    final: <FinalVoting popUpNotification={popUpNotification} />,
   };
 
   const openVotingRoutes = () => {

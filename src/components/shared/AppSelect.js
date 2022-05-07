@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const AppSelect = ({ score, setScore }) => {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth style={{ minWidth: '100px' }}>
       <InputLabel id="demo-simple-select-label">Score</InputLabel>
       <Select
         labelId="demo-simple-select-label"
@@ -12,6 +12,12 @@ const AppSelect = ({ score, setScore }) => {
         label="Score"
         onChange={(event) => setScore(event.target.value)}
       >
+        {/* {availableScores.map((availableScore, index) => (
+          <MenuItem key={index} value={index}>
+            {availableScore}
+          </MenuItem>
+        ))} */}
+
         <MenuItem value={'1'}>1</MenuItem>
         <MenuItem value={'2'}>2</MenuItem>
         <MenuItem value={'3'}>3</MenuItem>
@@ -30,6 +36,7 @@ const AppSelect = ({ score, setScore }) => {
 AppSelect.propTypes = {
   setScore: PropTypes.func,
   score: PropTypes.string,
+  // availableScores: PropTypes.array,
 };
 
 export default AppSelect;

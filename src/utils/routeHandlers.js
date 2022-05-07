@@ -1,4 +1,7 @@
 const urlBlockchain = 'http://localhost:8080/blockchain';
+const songsUrl =
+  'https://80f9-77-124-6-115.eu.ngrok.io/api/v1/eurovision/songs';
+// const songsUrl = 'https://httpbin.org/anything';
 
 async function httpRequestBuilder({
   url,
@@ -25,6 +28,16 @@ export async function hash({ data }) {
       data,
     },
   });
+
+  return response.json();
+}
+
+export async function getSongs() {
+  const response = await httpRequestBuilder({
+    url: songsUrl,
+    method: 'GET',
+  });
+  console.log(response);
 
   return response.json();
 }
