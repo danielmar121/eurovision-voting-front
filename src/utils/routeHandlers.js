@@ -17,9 +17,10 @@ async function httpRequestBuilder({
   return res;
 }
 
-export async function sendScores({ scores }) {
+export async function sendScores({ scores, name }) {
+  console.log({ scores, name });
   await httpRequestBuilder({
-    url: `${songsUrl}/api/v1/eurovision/daniel`,
+    url: `${songsUrl}/api/v1/eurovision/${name}`,
     method: 'POST',
     body: scores,
   });

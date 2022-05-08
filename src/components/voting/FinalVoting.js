@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 
 import AppList from '../shared/AppList';
 import AppButton from '../shared/AppButton';
+import AppTextField from '../shared/AppTextField';
 
 import { getSongs, sendScores } from '../../utils/routeHandlers';
 
 const FinalVoting = ({ popUpNotification }) => {
   const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState('');
   const [songs, setSongs] = useState([]);
   const [scores, setScores] = useState({});
 
@@ -41,7 +43,7 @@ const FinalVoting = ({ popUpNotification }) => {
     try {
       const isValid = validateScore();
       if (isValid) {
-        await sendScores({ scores });
+        await sendScores({ scores, name: userName });
         popUpNotification({
           message: 'Successfully send scores',
           severity: 'success',
@@ -87,6 +89,7 @@ const FinalVoting = ({ popUpNotification }) => {
   return (
     <Container>
       <Box>
+        <AppTextField value={userName} setValue={setUserName} label="Name" />
         {songs && <AppList items={songs} addFinalScore={addFinalScore} />}
         {loading && <CircularProgress />}
         <AppButton
