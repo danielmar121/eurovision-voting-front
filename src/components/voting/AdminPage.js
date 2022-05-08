@@ -1,9 +1,11 @@
 import { useQuery } from 'react-query';
 import { Box, Container, CircularProgress } from '@material-ui/core';
 import { useState } from 'react';
-import AppTable from '../shared/AppTable';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+
+import AppTextField from '../shared/AppTextField';
+import AppTable from '../shared/AppTable';
 
 import { getScores } from '../../utils/routeHandlers';
 
@@ -17,12 +19,8 @@ const isScoresChanged = ({ oldScores, newScores }) =>
   !_.isEqual(oldScores, newScores);
 
 const AdminPage = ({ popUpNotification }) => {
-  const [rows, setRows] = useState([
-    { countryName: 'Israel', songName: 'I.M', score: 12 },
-    { countryName: 'Ukraine', songName: 'Stefania', score: 10 },
-    { countryName: 'bla bla bla', songName: 'bla bla bla', score: 8 },
-    { countryName: 'sho sho sho', songName: 'sho sho sho', score: 5 },
-  ]);
+  const [rows, setRows] = useState([]);
+  const [userName, setUserName] = useState('');
 
   const { data, isLoading, isSuccess, isError, error } = useQuery(
     'songs',
@@ -31,7 +29,6 @@ const AdminPage = ({ popUpNotification }) => {
   );
 
   if (isSuccess && isScoresChanged({ oldScores: rows, newScores: data })) {
-    console.log(data);
     setRows(data);
   }
 
@@ -51,8 +48,11 @@ const AdminPage = ({ popUpNotification }) => {
         justifyContent="center"
         alignItems="center"
       >
+        <AppTextField value={userName} setValue={setUserName} label="Name" />
         {isLoading && <CircularProgress />}
-        {isSuccess && <AppTable rows={rows} columns={columns} />}
+        {isSuccess && userName === 'stoza' && (
+          <AppTable rows={rows} columns={columns} />
+        )}
       </Box>
     </Container>
   );
