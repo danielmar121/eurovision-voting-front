@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import MainPage from './components/MainPage';
 import { Box } from '@material-ui/core';
 import { HowToVote, Star } from '@material-ui/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Drawer from './components/shared/Drawer';
 import AppSnackbar from './components/shared/AppSnackbar';
@@ -10,6 +10,20 @@ import FinalVoting from './components/voting/FinalVoting';
 import AdminPage from './components/voting/AdminPage';
 
 const queryClient = new QueryClient();
+const pages = [
+  {
+    label: 'Stozot Voting',
+    page: FinalVoting,
+    key: 'voting',
+    icon: <HowToVote key="vote-icon" />,
+  },
+  {
+    label: 'Admin page',
+    page: AdminPage,
+    key: 'admin',
+    icon: <Star key="admin-icon" />,
+  },
+];
 
 export default function App() {
   const [notify, setNotify] = useState(false);
@@ -23,26 +37,21 @@ export default function App() {
     setNotify(true);
   };
 
-  const pages = [
-    {
-      label: 'Stozot Voting',
-      page: <FinalVoting popUpNotification={popUpNotification} />,
-      key: 'voting',
-      icon: <HowToVote key="vote-icon" />,
-    },
-    {
-      label: 'Admin page',
-      page: <AdminPage popUpNotification={popUpNotification} />,
-      key: 'admin',
-      icon: <Star key="admin-icon" />,
-    },
-  ];
+  useEffect(() => {
+    if (page === null) {
+      setPage(<FinalVoting popUpNotification={popUpNotification} />);
+    }
+  }, [page]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <Box>
         <Box>
-          <Drawer pages={pages} setPage={setPage} />
+          <Drawer
+            pages={pages}
+            setPage={setPage}
+            popUpNotification={popUpNotification}
+          />
         </Box>
         <br />
         <br />

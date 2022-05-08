@@ -82,7 +82,11 @@ const useStyles = makeStyles((theme) => ({
   buttons: { display: 'flex', aligncontent: 'center', m: '1' },
 }));
 
-export default function PersistentDrawerLeft({ pages, setPage }) {
+export default function PersistentDrawerLeft({
+  pages,
+  setPage,
+  popUpNotification,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -140,7 +144,7 @@ export default function PersistentDrawerLeft({ pages, setPage }) {
               key={page.key}
               onClick={() => {
                 handleDrawerClose();
-                setPage(page.page);
+                setPage(<page.page popUpNotification={popUpNotification} />);
               }}
             >
               <ListItemIcon>{page.icon}</ListItemIcon>
@@ -156,4 +160,5 @@ export default function PersistentDrawerLeft({ pages, setPage }) {
 PersistentDrawerLeft.propTypes = {
   pages: PropTypes.array,
   setPage: PropTypes.func,
+  popUpNotification: PropTypes.func,
 };
