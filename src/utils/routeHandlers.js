@@ -34,3 +34,12 @@ export async function getSongs() {
 
   return response.json();
 }
+
+export async function getScores() {
+  const response = await httpRequestBuilder({
+    url: `${songsUrl}/api/v1/eurovision`,
+    method: 'GET',
+  });
+
+  return response.json();
+}

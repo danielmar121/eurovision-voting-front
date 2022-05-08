@@ -16,7 +16,6 @@ import {
 import { ChevronLeft, ChevronRight, Menu } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import AppButton from './AppButton';
 
 const drawerWidth = 240;
 
@@ -83,14 +82,7 @@ const useStyles = makeStyles((theme) => ({
   buttons: { display: 'flex', aligncontent: 'center', m: '1' },
 }));
 
-export default function PersistentDrawerLeft({
-  openRoutesFuncs,
-  routes,
-  routesIcons,
-  sectionName,
-  pagesNames,
-  openPage,
-}) {
+export default function PersistentDrawerLeft({ pages, setPage }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -122,17 +114,8 @@ export default function PersistentDrawerLeft({
             <Menu />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {sectionName}
+            {'STOZOVISION'}
           </Typography>
-          <Box className={classes.buttons}>
-            {pagesNames.map((pageName) => (
-              <AppButton
-                key={pageName}
-                handleSubmit={() => openPage({ name: pageName })}
-                buttonName={pageName}
-              ></AppButton>
-            ))}
-          </Box>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -151,17 +134,17 @@ export default function PersistentDrawerLeft({
         </div>
         <Divider />
         <List>
-          {routes.map((text, index) => (
+          {pages.map((page) => (
             <ListItem
               button
-              key={text}
+              key={page.key}
               onClick={() => {
                 handleDrawerClose();
-                openRoutesFuncs[index]();
+                setPage(page.page);
               }}
             >
-              <ListItemIcon>{routesIcons[index]}</ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemIcon>{page.icon}</ListItemIcon>
+              <ListItemText primary={page.label} />
             </ListItem>
           ))}
         </List>
@@ -171,10 +154,6 @@ export default function PersistentDrawerLeft({
 }
 
 PersistentDrawerLeft.propTypes = {
-  openRoutesFuncs: PropTypes.array,
-  routes: PropTypes.array,
-  routesIcons: PropTypes.array,
-  pagesNames: PropTypes.array,
-  sectionName: PropTypes.string,
-  openPage: PropTypes.func,
+  pages: PropTypes.array,
+  setPage: PropTypes.func,
 };

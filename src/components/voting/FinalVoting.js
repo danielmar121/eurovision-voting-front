@@ -1,5 +1,5 @@
+import { useQuery } from 'react-query';
 import { Container, CircularProgress, Box } from '@material-ui/core';
-import { useEffect } from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,39 +9,41 @@ import AppTextField from '../shared/AppTextField';
 
 import { getSongs, sendScores } from '../../utils/routeHandlers';
 
+function validateScore({ scores }) {
+  const scoresCount = Object.values(scores).reduce(
+    (acc, score) => {
+      if (score !== '0') acc[score] = acc[score] + 1;
+      return acc;
+    },
+    {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      10: 0,
+      12: 0,
+    }
+  );
+
+  return Object.values(scoresCount).every((scoreCount) => scoreCount === 1);
+}
+
 const FinalVoting = ({ popUpNotification }) => {
-  const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState('');
-  const [songs, setSongs] = useState([]);
   const [scores, setScores] = useState({});
-
-  function validateScore() {
-    const scoresCount = Object.values(scores).reduce(
-      (acc, score) => {
-        if (score !== '0') acc[score] = acc[score] + 1;
-        return acc;
-      },
-      {
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 0,
-        7: 0,
-        8: 0,
-        10: 0,
-        12: 0,
-      }
-    );
-
-    return Object.values(scoresCount).every((scoreCount) => scoreCount === 1);
-  }
+  // const queryClient = useQueryClient();
+  const { data, isLoading, isSuccess, isError, error } = useQuery(
+    'songs',
+    getSongs
+  );
 
   async function handleSubmitScores() {
-    setLoading(true);
     try {
-      const isValid = validateScore();
+      const isValid = validateScore({ scores });
       if (isValid) {
         await sendScores({ scores, name: userName });
         popUpNotification({
@@ -56,8 +58,6 @@ const FinalVoting = ({ popUpNotification }) => {
       }
     } catch (error) {
       popUpNotification({ message: error.message, severity: 'error' });
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -67,31 +67,19 @@ const FinalVoting = ({ popUpNotification }) => {
     setScores(tempScores);
   }
 
-  useEffect(() => {
-    async function init1() {
-      try {
-        const res = await getSongs();
-        popUpNotification({
-          message: 'Successfully got songs',
-          severity: 'success',
-        });
-        setSongs(res);
-      } catch (error) {
-        popUpNotification({ message: error.message, severity: 'error' });
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    init1();
-  }, [popUpNotification]);
+  if (isError) {
+    popUpNotification({
+      message: error.message || 'Failed to get songs',
+      severity: 'error',
+    });
+  }
 
   return (
     <Container>
       <Box>
         <AppTextField value={userName} setValue={setUserName} label="Name" />
-        {songs && <AppList items={songs} addFinalScore={addFinalScore} />}
-        {loading && <CircularProgress />}
+        {isSuccess && <AppList items={data} addFinalScore={addFinalScore} />}
+        {isLoading && <CircularProgress />}
         <AppButton
           key="submitScores"
           handleSubmit={handleSubmitScores}
