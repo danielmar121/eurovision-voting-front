@@ -12,22 +12,6 @@ const FinalVoting = ({ popUpNotification }) => {
   const [loading, setLoading] = useState(true);
   const [songs, setSongs] = useState([]);
   const [scores, setScores] = useState({});
-  const [init, setInit] = useState(true);
-
-  async function getSongsFromServer() {
-    try {
-      const res = await getSongs();
-      popUpNotification({
-        message: 'Successfully got songs',
-        severity: 'success',
-      });
-      setSongs(res);
-    } catch (error) {
-      popUpNotification({ message: error.message, severity: 'error' });
-    } finally {
-      setLoading(false);
-    }
-  }
 
   function validateScore() {
     const scoresCount = Object.values(scores).reduce(
@@ -79,15 +63,26 @@ const FinalVoting = ({ popUpNotification }) => {
     const tempScores = scores;
     tempScores[key] = score;
     setScores(tempScores);
-    console.log(scores);
   }
 
   useEffect(() => {
-    if (init) {
-      getSongsFromServer();
-      setInit(false);
+    async function init1() {
+      try {
+        const res = await getSongs();
+        popUpNotification({
+          message: 'Successfully got songs',
+          severity: 'success',
+        });
+        setSongs(res);
+      } catch (error) {
+        popUpNotification({ message: error.message, severity: 'error' });
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [init, getSongsFromServer]);
+
+    init1();
+  }, [popUpNotification]);
 
   return (
     <Container>
