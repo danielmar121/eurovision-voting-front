@@ -18,7 +18,10 @@ async function httpRequestBuilder({
 }
 
 export async function sendScores({ scores, name }) {
-  console.log({ scores, name });
+  if (!name || name === '') {
+    throw new Error('Name must be provided');
+  }
+
   await httpRequestBuilder({
     url: `${songsUrl}/api/v1/eurovision/${name}`,
     method: 'POST',
