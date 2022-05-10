@@ -50,7 +50,7 @@ const AdminPage = ({ popUpNotification }) => {
       >
         <AppTextField value={userName} setValue={setUserName} label="Name" />
         {isLoading && <CircularProgress />}
-        {isSuccess && userName === 'stoza' && (
+        {isSuccess && userName === 'stuza' && (
           <AppTable rows={rows} columns={columns} />
         )}
       </Box>

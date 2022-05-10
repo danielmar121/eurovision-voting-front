@@ -118,7 +118,7 @@ export default function PersistentDrawerLeft({
             <Menu />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {'STOZOVISION'}
+            {'STUZOVISION'}
           </Typography>
         </Toolbar>
       </AppBar>

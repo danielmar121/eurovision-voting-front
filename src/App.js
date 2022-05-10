@@ -6,14 +6,14 @@ import { useEffect, useState } from 'react';
 
 import Drawer from './components/shared/Drawer';
 import AppSnackbar from './components/shared/AppSnackbar';
-import FinalVoting from './components/voting/FinalVoting';
+import VotingPage from './components/voting/VotingPage';
 import AdminPage from './components/voting/AdminPage';
 
 const queryClient = new QueryClient();
 const pages = [
   {
-    label: 'Stozot Voting',
-    page: FinalVoting,
+    label: 'Stuzot Voting',
+    page: VotingPage,
     key: 'voting',
     icon: <HowToVote key="vote-icon" />,
   },
@@ -39,7 +39,7 @@ export default function App() {
 
   useEffect(() => {
     if (page === null) {
-      setPage(<FinalVoting popUpNotification={popUpNotification} />);
+      setPage(<VotingPage popUpNotification={popUpNotification} />);
     }
   }, [page]);
 
