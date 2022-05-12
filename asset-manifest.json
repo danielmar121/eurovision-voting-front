@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/eurovision-voting-front/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/eurovision-voting-front/static/js/main.1fbb45fe.chunk.js",
-    "main.js.map": "/eurovision-voting-front/static/js/main.1fbb45fe.chunk.js.map",
-    "runtime-main.js": "/eurovision-voting-front/static/js/runtime-main.93da8840.js",
-    "runtime-main.js.map": "/eurovision-voting-front/static/js/runtime-main.93da8840.js.map",
-    "static/js/2.163c3160.chunk.js": "/eurovision-voting-front/static/js/2.163c3160.chunk.js",
-    "static/js/2.163c3160.chunk.js.map": "/eurovision-voting-front/static/js/2.163c3160.chunk.js.map",
-    "static/js/3.80684754.chunk.js": "/eurovision-voting-front/static/js/3.80684754.chunk.js",
-    "static/js/3.80684754.chunk.js.map": "/eurovision-voting-front/static/js/3.80684754.chunk.js.map",
+    "main.js": "/eurovision-voting-front/static/js/main.eb7f9ceb.chunk.js",
+    "main.js.map": "/eurovision-voting-front/static/js/main.eb7f9ceb.chunk.js.map",
+    "runtime-main.js": "/eurovision-voting-front/static/js/runtime-main.4ac21cdb.js",
+    "runtime-main.js.map": "/eurovision-voting-front/static/js/runtime-main.4ac21cdb.js.map",
+    "static/js/2.61448307.chunk.js": "/eurovision-voting-front/static/js/2.61448307.chunk.js",
+    "static/js/2.61448307.chunk.js.map": "/eurovision-voting-front/static/js/2.61448307.chunk.js.map",
+    "static/js/3.b1ce1538.chunk.js": "/eurovision-voting-front/static/js/3.b1ce1538.chunk.js",
+    "static/js/3.b1ce1538.chunk.js.map": "/eurovision-voting-front/static/js/3.b1ce1538.chunk.js.map",
     "index.html": "/eurovision-voting-front/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/eurovision-voting-front/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.163c3160.chunk.js.LICENSE.txt": "/eurovision-voting-front/static/js/2.163c3160.chunk.js.LICENSE.txt"
+    "static/js/2.61448307.chunk.js.LICENSE.txt": "/eurovision-voting-front/static/js/2.61448307.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.93da8840.js",
-    "static/js/2.163c3160.chunk.js",
+    "static/js/runtime-main.4ac21cdb.js",
+    "static/js/2.61448307.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.1fbb45fe.chunk.js"
+    "static/js/main.eb7f9ceb.chunk.js"
   ]
 }
