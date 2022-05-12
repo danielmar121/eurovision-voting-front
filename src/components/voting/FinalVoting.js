@@ -9,6 +9,9 @@ import AppTextField from '../shared/AppTextField';
 import { getSongs, sendScores } from '../../utils/routeHandlers';
 
 const cookies = new Cookies();
+const minute = 60;
+const hour = minute * 60;
+const twoHours = hour * 2;
 
 function validateScore({ scores }) {
   const scoresCount = Object.values(scores).reduce(
@@ -46,7 +49,7 @@ const FinalVoting = ({ popUpNotification, setVoted }) => {
       const isValid = validateScore({ scores });
       if (isValid) {
         await sendScores({ scores, name: userName });
-        cookies.set('voted', true, { path: '/' });
+        cookies.set('voted', true, { path: '/', maxAge: twoHours });
         setVoted(true);
         popUpNotification({
           message: 'Successfully send scores',
