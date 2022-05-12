@@ -1,27 +1,28 @@
 import { Box } from '@material-ui/core';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import Cookies from 'universal-cookie';
 import FinalVoting from './FinalVoting';
 import ThankYouForVoting from './ThankYouForVoting';
 
-// import { getCountryDetails } from '../../utils/routeHandlers';
+const cookies = new Cookies();
 
 const VotingPage = ({ popUpNotification }) => {
-  const [voted] = useState(null);
+  const [voted, setVoted] = useState(null);
 
-  if (voted) {
+  if (voted || cookies.get('voted')) {
     return (
       <Box m={0}>
-        <ThankYouForVoting
-          popUpNotification={popUpNotification}
-        ></ThankYouForVoting>
+        <ThankYouForVoting popUpNotification={popUpNotification} />
       </Box>
     );
   } else {
     return (
       <Box m={0}>
-        <FinalVoting popUpNotification={popUpNotification}></FinalVoting>
+        <FinalVoting
+          popUpNotification={popUpNotification}
+          setVoted={setVoted}
+        />
       </Box>
     );
   }
