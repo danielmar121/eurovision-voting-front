@@ -3,8 +3,10 @@ import { Container, Box, CardMedia } from '@material-ui/core';
 import AppCard from '../shared/AppCard';
 
 // const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
+// const imageUrl =
+//   'https://upload.wikimedia.org/wikipedia/commons/1/1f/Gay_flag_7.svg';
 const imageUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/1/1f/Gay_flag_7.svg';
+  'https://upload.wikimedia.org/wikipedia/commons/6/66/Gay_harrotasunaren_bandera.png';
 
 const styles = {
   media: {
