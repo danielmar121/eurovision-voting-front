@@ -2,7 +2,9 @@ import { Container, Box, CardMedia } from '@material-ui/core';
 // import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
 import AppCard from '../shared/AppCard';
 
-const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
+// const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
+const imageUrl =
+  'https://upload.wikimedia.org/wikipedia/commons/1/1f/Gay_flag_7.svg';
 
 const styles = {
   media: {
