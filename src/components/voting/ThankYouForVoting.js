@@ -1,19 +1,17 @@
 import { Container, Box, CardMedia } from '@material-ui/core';
-import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
+// import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
 import AppCard from '../shared/AppCard';
 
 const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
 
-// const styles = {
-//   media: {
-//     height: 0,
-//     paddingTop: '10%',
-//   },
-// };
+const styles = {
+  media: {
+    height: '150px',
+    width: '220px',
+  },
+};
 
 const ThankYouForVoting = () => {
-  const mediaStyles = useWideCardMediaStyles();
-
   return (
     <Container>
       <Box
@@ -28,10 +26,11 @@ const ThankYouForVoting = () => {
           <Box>
             <h1>---------------</h1>
             <CardMedia
-              classes={mediaStyles}
+              component="img"
+              height="194"
               image={imageUrl}
-              // title="Flag"
-              // style={styles.media}
+              alt="Paella dish"
+              style={styles.media}
             />
             <h1>---------------</h1>
           </Box>
