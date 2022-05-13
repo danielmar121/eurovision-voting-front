@@ -29,9 +29,8 @@ const ThankYouForVoting = () => {
             <h1>---------------</h1>
             <CardMedia
               component="img"
-              height="194"
               image={imageUrl}
-              alt="Paella dish"
+              alt="Flag"
               style={styles.media}
             />
             <h1>---------------</h1>
