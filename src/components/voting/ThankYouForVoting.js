@@ -4,12 +4,12 @@ import AppCard from '../shared/AppCard';
 
 const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
 
-const styles = {
-  media: {
-    height: 0,
-    paddingTop: '10%',
-  },
-};
+// const styles = {
+//   media: {
+//     height: 0,
+//     paddingTop: '10%',
+//   },
+// };
 
 const ThankYouForVoting = () => {
   const mediaStyles = useWideCardMediaStyles();
@@ -31,7 +31,7 @@ const ThankYouForVoting = () => {
               classes={mediaStyles}
               image={imageUrl}
               title="Flag"
-              style={styles.media}
+              // style={styles.media}
             />
             <h1>---------------</h1>
           </Box>
