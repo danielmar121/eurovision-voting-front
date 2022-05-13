@@ -8,7 +8,7 @@ import ThankYouForVoting from './ThankYouForVoting';
 const cookies = new Cookies();
 
 const VotingPage = ({ popUpNotification }) => {
-  const [voted, setVoted] = useState(true);
+  const [voted, setVoted] = useState(null);
 
   if (voted || cookies.get('voted')) {
     return (
