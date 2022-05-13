@@ -30,7 +30,7 @@ const ThankYouForVoting = () => {
             <CardMedia
               classes={mediaStyles}
               image={imageUrl}
-              title="Flag"
+              // title="Flag"
               // style={styles.media}
             />
             <h1>---------------</h1>
