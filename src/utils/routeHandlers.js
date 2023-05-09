@@ -1,4 +1,4 @@
-const songsUrl = 'https://3097-77-124-6-115.eu.ngrok.io';
+const songsUrl = 'https://2725-46-117-134-54.ngrok-free.app';
 
 async function httpRequestBuilder({
   url,
