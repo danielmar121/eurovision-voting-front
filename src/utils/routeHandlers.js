@@ -1,9 +1,9 @@
-const songsUrl = 'https://179a-85-250-64-255.ngrok-free.app';
+const songsUrl = "https://4943-46-116-118-202.ngrok-free.app";
 
 async function httpRequestBuilder({
   url,
-  method = 'POST',
-  headers = { 'Content-Type': 'application/json' },
+  method = "POST",
+  headers = { "Content-Type": "application/json" },
   body,
 }) {
   const res = await fetch(url, {
@@ -18,21 +18,23 @@ async function httpRequestBuilder({
 }
 
 export async function sendScores({ scores, name }) {
-  if (!name || name === '') {
-    throw new Error('Name must be provided');
+  if (!name || name === "") {
+    throw new Error("Name must be provided");
   }
 
-  await httpRequestBuilder({
+  const response = await httpRequestBuilder({
     url: `${songsUrl}/api/v1/eurovision/${name}`,
-    method: 'POST',
+    method: "POST",
     body: scores,
   });
+
+  return response.json();
 }
 
 export async function getSongs() {
   const response = await httpRequestBuilder({
     url: `${songsUrl}/api/v1/eurovision/songs`,
-    method: 'GET',
+    method: "GET",
   });
 
   return response.json();
@@ -41,7 +43,7 @@ export async function getSongs() {
 export async function getScores() {
   const response = await httpRequestBuilder({
     url: `${songsUrl}/api/v1/eurovision`,
-    method: 'GET',
+    method: "GET",
   });
 
   return response.json();
