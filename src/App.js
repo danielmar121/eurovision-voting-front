@@ -1,71 +1,53 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import MainPage from './components/MainPage';
-import { Box } from '@material-ui/core';
-import { HowToVote, Star } from '@material-ui/icons';
-import { useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from "react-query";
+import MainPage from "./components/MainPage";
+import { Box } from "@material-ui/core";
+import { HowToVote, Star } from "@material-ui/icons";
+import { useEffect, useState } from "react";
 
-import Drawer from './components/shared/Drawer';
-import AppSnackbar from './components/shared/AppSnackbar';
-import VotingPage from './components/voting/VotingPage';
-import AdminPage from './components/voting/AdminPage';
+import Drawer from "./components/shared/Drawer";
+import AppSnackbar from "./components/shared/AppSnackbar";
+import VotingPage from "./components/voting/VotingPage";
+import AdminPage from "./components/voting/AdminPage";
 
 const queryClient = new QueryClient();
 const pages = [
   {
-    label: 'Stuzot Voting',
+    label: "Stuzot Voting",
     page: VotingPage,
-    key: 'voting',
+    key: "voting",
     icon: <HowToVote key="vote-icon" />,
   },
   {
-    label: 'Admin page',
+    label: "Admin page",
     page: AdminPage,
-    key: 'admin',
+    key: "admin",
     icon: <Star key="admin-icon" />,
   },
 ];
 
 export default function App() {
-  const [notify, setNotify] = useState(false);
-  const [message, setMessage] = useState('');
-  const [severity, setSeverity] = useState('');
   const [page, setPage] = useState(null);
-
-  const popUpNotification = ({ message, severity }) => {
-    setMessage(message);
-    setSeverity(severity);
-    setNotify(true);
-  };
 
   useEffect(() => {
     if (page === null) {
-      setPage(<VotingPage popUpNotification={popUpNotification} />);
+      setPage(<VotingPage />);
     }
   }, [page]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Box>
+    <AppSnackbar>
+      <QueryClientProvider client={queryClient}>
         <Box>
-          <Drawer
-            pages={pages}
-            setPage={setPage}
-            popUpNotification={popUpNotification}
-          />
+          <Box>
+            <Drawer pages={pages} setPage={setPage} />
+          </Box>
+          <br />
+          <br />
+          <br />
+          <br />
+          <MainPage page={page} />
         </Box>
-        <br />
-        <br />
-        <br />
-        <br />
-        <MainPage page={page} />
-        {notify && (
-          <AppSnackbar
-            message={message}
-            severity={severity}
-            setNotify={setNotify}
-          />
-        )}
-      </Box>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </AppSnackbar>
   );
 }

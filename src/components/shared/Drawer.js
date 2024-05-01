@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import clsx from 'clsx';
+import { useState } from "react";
+import clsx from "clsx";
 import {
   AppBar,
   Box,
@@ -12,29 +12,29 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import { ChevronLeft, ChevronRight, Menu } from '@material-ui/icons';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+} from "@material-ui/core";
+import { ChevronLeft, ChevronRight, Menu } from "@material-ui/icons";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     background:
-      'linear-gradient(45deg, #F60707 16%, #F09501 32%, #F7F712 48%, #46B229 65%, #1826E6 81%, #960DDA 100%)',
+      "linear-gradient(45deg, #F60707 16%, #F09501 32%, #F7F712 48%, #46B229 65%, #1826E6 81%, #960DDA 100%)",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
@@ -53,24 +53,24 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -79,14 +79,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  buttons: { display: 'flex', aligncontent: 'center', m: '1' },
+  buttons: { display: "flex", aligncontent: "center", m: "1" },
 }));
 
-export default function PersistentDrawerLeft({
-  pages,
-  setPage,
-  popUpNotification,
-}) {
+export default function PersistentDrawerLeft({ pages, setPage }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -118,7 +114,7 @@ export default function PersistentDrawerLeft({
             <Menu />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {'STUZOVISION'}
+            {"STUZOVISION"}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -133,7 +129,7 @@ export default function PersistentDrawerLeft({
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
+            {theme.direction === "ltr" ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </div>
         <Divider />
@@ -144,7 +140,7 @@ export default function PersistentDrawerLeft({
               key={page.key}
               onClick={() => {
                 handleDrawerClose();
-                setPage(<page.page popUpNotification={popUpNotification} />);
+                setPage(<page.page />);
               }}
             >
               <ListItemIcon>{page.icon}</ListItemIcon>
@@ -160,5 +156,4 @@ export default function PersistentDrawerLeft({
 PersistentDrawerLeft.propTypes = {
   pages: PropTypes.array,
   setPage: PropTypes.func,
-  popUpNotification: PropTypes.func,
 };

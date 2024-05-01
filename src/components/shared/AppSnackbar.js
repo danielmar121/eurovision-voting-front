@@ -1,12 +1,6 @@
-import MuiAlert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState } from "react";
-import { Snackbar } from "@material-ui/core";
+import { SnackbarProvider } from "notistack";
 import PropTypes from "prop-types";
-
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,32 +11,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AppSnackbar({ message, severity, setNotify }) {
+export default function AppSnackbar({ children }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-    setNotify(false);
-  };
 
   return (
-    <div className={classes.root}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={severity}>
-          {message}
-        </Alert>
-      </Snackbar>
-    </div>
+    <SnackbarProvider
+      className={classes.root}
+      maxSnack={6}
+      autoHideDuration={4000}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+    >
+      {children}
+    </SnackbarProvider>
   );
 }
 
 AppSnackbar.propTypes = {
-  message: PropTypes.string,
-  severity: PropTypes.string,
-  setNotify: PropTypes.func,
+  children: PropTypes.any,
 };
