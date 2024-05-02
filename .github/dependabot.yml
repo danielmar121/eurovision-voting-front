@@ -8,6 +8,6 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: 'daylly'
-      time: '20:30:'
+      interval: 'daily'
+      time: '20:30'
       timezone: 'Asia/Jerusalem'
