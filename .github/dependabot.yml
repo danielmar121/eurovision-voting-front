@@ -9,5 +9,5 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-      time: '20:30'
+      time: '20:53'
       timezone: 'Asia/Jerusalem'
