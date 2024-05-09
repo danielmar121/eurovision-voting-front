@@ -6,7 +6,9 @@ import {
   ListItemText,
   ListItem,
   Box,
+  ListItemIcon,
 } from "@material-ui/core";
+import { DragHandle } from "@material-ui/icons";
 import AppSelect from "./AppSelect";
 import PropTypes from "prop-types";
 import { Draggable } from "react-beautiful-dnd";
@@ -19,8 +21,10 @@ export default function AppListItem({ item, addFinalScore, index }) {
           alignItems="flex-start"
           innerRef={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
         >
+          <ListItemIcon {...provided.dragHandleProps}>
+            <DragHandle></DragHandle>
+          </ListItemIcon>
           <ListItemAvatar>
             <Avatar src={item.flag} />
           </ListItemAvatar>
