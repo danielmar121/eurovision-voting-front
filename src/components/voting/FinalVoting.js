@@ -40,7 +40,6 @@ const FinalVoting = ({ setVoted }) => {
 
   async function handleSubmitScores() {
     try {
-      console.log(scores);
       const {
         is_valid,
         error: { miss, dup },
@@ -87,7 +86,7 @@ const FinalVoting = ({ setVoted }) => {
     const number = Number(score);
 
     if (number) {
-      tempScores[key] = Number(score);
+      tempScores[key] = number;
     } else {
       delete tempScores[key];
     }
