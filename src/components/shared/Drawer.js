@@ -13,7 +13,12 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import { ChevronLeft, ChevronRight, Menu } from "@material-ui/icons";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Menu,
+  FavoriteTwoTone,
+} from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
@@ -28,8 +33,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background:
-      "linear-gradient(45deg, #F60707 16%, #F09501 32%, #F7F712 48%, #46B229 65%, #1826E6 81%, #960DDA 100%)",
+    background: "linear-gradient(45deg , white, lightgray 10%, blue, darkblue)",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -41,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "gray",
   },
   hide: {
     display: "none",
@@ -116,6 +121,9 @@ export default function PersistentDrawerLeft({ pages, setPage }) {
           <Typography variant="h6" className={classes.title}>
             {"STUZOVISION"}
           </Typography>
+          <Box color="#FFD700">
+            <FavoriteTwoTone />
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer

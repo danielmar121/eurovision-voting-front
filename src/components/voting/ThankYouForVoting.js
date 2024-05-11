@@ -1,18 +1,12 @@
-import { Container, Box, CardMedia } from '@material-ui/core';
+import { Container, Box, CardMedia } from "@material-ui/core";
 // import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
-import AppCard from '../shared/AppCard';
+import AppCard from "../shared/AppCard";
 
-// const imageUrl = 'http://www.dgalim.co.il/ufiles/banners/PRIDE.jpg';
-// const imageUrl =
-//   'https://upload.wikimedia.org/wikipedia/commons/1/1f/Gay_flag_7.svg';
 const imageUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/6/66/Gay_harrotasunaren_bandera.png';
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Yellow_ribbon.svg/640px-Yellow_ribbon.svg.png";
 
 const styles = {
-  media: {
-    height: '150px',
-    width: '220px',
-  },
+  media: {},
 };
 
 const ThankYouForVoting = () => {
@@ -24,18 +18,18 @@ const ThankYouForVoting = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        fontFamily="Helvetica Neue"
+        color="darkblue"
       >
-        <h1>תודה שהצבעת אוחצ׳ינה</h1>
+        <h1>ביחד עדן תנצח</h1>
         <AppCard>
           <Box>
-            <h1>---------------</h1>
             <CardMedia
               component="img"
               image={imageUrl}
               alt="Flag"
               style={styles.media}
             />
-            <h1>---------------</h1>
           </Box>
         </AppCard>
         <h1>סתומות זונות</h1>

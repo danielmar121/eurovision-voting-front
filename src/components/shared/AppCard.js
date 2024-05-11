@@ -1,17 +1,17 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { Card } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import { makeStyles } from "@material-ui/core/styles";
+import { Card } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 304,
-    margin: 'auto',
-    boxShadow: 'none',
+    margin: "auto",
+    boxShadow: "none",
     padding: 24,
     borderRadius: 20,
     marginTop: 24,
-    backgroundColor: '#d9b3ff',
-    align: 'center',
+    backgroundColor: "#00008B",
+    align: "center",
   },
 }));
 
